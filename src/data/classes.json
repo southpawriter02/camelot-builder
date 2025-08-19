@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Cleric",
+    "realm": "Albion",
+    "ra_trees": ["smiting", "healing", "enhancements"]
+  },
+  {
+    "name": "Shaman",
+    "realm": "Midgard",
+    "ra_trees": ["subterranean", "spirit", "enhancements"]
+  },
+  {
+    "name": "Druid",
+    "realm": "Hibernia",
+    "ra_trees": ["nature", "nurture", "enhancements"]
+  }
+]
