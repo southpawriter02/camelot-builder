@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { Build } from './build';
-import { IClass, IAbility } from '../types';
+import type { IClass, IAbility } from '../types';
 
 // Sample Data for testing
 const clericClass: IClass = {
