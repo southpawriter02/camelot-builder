@@ -1,4 +1,4 @@
-import { IAbility, IClass } from '../types';
+import type { IAbility, IClass } from '../types';
 import { canPurchaseAbility } from './validator';
 
 /**
@@ -16,21 +16,29 @@ export class Build {
   public readonly spentPoints: number;
   public readonly purchasedAbilities: PurchasedAbilities;
 
-  constructor(characterClass: IClass | null = null) {
-    this.characterClass = characterClass;
-    this.spentPoints = 0;
-    this.purchasedAbilities = {};
-  }
-
-  // Private constructor for cloning
-  private constructor(
-    characterClass: IClass | null,
-    spentPoints: number,
-    purchasedAbilities: PurchasedAbilities
+  constructor(
+    characterClass: IClass | null = null,
+    spentPoints: number = 0,
+    purchasedAbilities: PurchasedAbilities = {}
   ) {
     this.characterClass = characterClass;
     this.spentPoints = spentPoints;
     this.purchasedAbilities = purchasedAbilities;
+  }
+
+  /**
+   * Creates a new Build with updated state (internal factory method)
+   */
+  private clone(updates: {
+    characterClass?: IClass | null;
+    spentPoints?: number;
+    purchasedAbilities?: PurchasedAbilities;
+  }): Build {
+    return new Build(
+      updates.characterClass ?? this.characterClass,
+      updates.spentPoints ?? this.spentPoints,
+      updates.purchasedAbilities ?? this.purchasedAbilities
+    );
   }
 
   /**
@@ -57,6 +65,59 @@ export class Build {
       [ability.id]: nextRank,
     };
 
-    return new Build(this.characterClass, newSpentPoints, newPurchasedAbilities);
+    return this.clone({
+      spentPoints: newSpentPoints,
+      purchasedAbilities: newPurchasedAbilities,
+    });
+  }
+
+  /**
+   * Removes one rank from an ability.
+   * @param ability The ability to remove a rank from.
+   * @returns A new Build instance if successful, or the original instance on failure.
+   */
+  public removeAbilityRank(ability: IAbility): Build {
+    const currentRank = this.purchasedAbilities[ability.id] || 0;
+
+    // Can't remove if no ranks purchased
+    if (currentRank <= 0) {
+      return this;
+    }
+
+    // Get the cost of the current rank to refund
+    const currentRankData = ability.ranks.find(r => r.rank === currentRank);
+    if (!currentRankData) {
+      return this;
+    }
+
+    const newRank = currentRank - 1;
+    const newSpentPoints = this.spentPoints - currentRankData.cost;
+
+    // If new rank is 0, remove the ability from the map entirely
+    const newPurchasedAbilities = { ...this.purchasedAbilities };
+    if (newRank === 0) {
+      delete newPurchasedAbilities[ability.id];
+    } else {
+      newPurchasedAbilities[ability.id] = newRank;
+    }
+
+    return this.clone({
+      spentPoints: newSpentPoints,
+      purchasedAbilities: newPurchasedAbilities,
+    });
+  }
+
+  /**
+   * Gets the number of purchased abilities
+   */
+  public get abilityCount(): number {
+    return Object.keys(this.purchasedAbilities).length;
+  }
+
+  /**
+   * Gets the total number of ranks purchased across all abilities
+   */
+  public get totalRanks(): number {
+    return Object.values(this.purchasedAbilities).reduce((sum, rank) => sum + rank, 0);
   }
 }

@@ -1,4 +1,4 @@
-import { IAbility, IClass, IPrerequisite } from '../types';
+import type { IAbility, IPrerequisite } from '../types';
 import { Build } from './build';
 
 /**
