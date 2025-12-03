@@ -4,7 +4,9 @@ import type { IAbility, RealmType } from '../types';
 interface BuildSummaryProps {
   build: Build;
   allAbilities: Record<string, IAbility>;
-  onResetBuild: () => void;
+  onResetBuild?: () => void;
+  pointBudget?: number;
+  remainingPoints?: number;
 }
 
 // Realm icons
@@ -22,10 +24,14 @@ const getRealmClass = (realm: RealmType): string => {
 export const BuildSummary: React.FC<BuildSummaryProps> = ({
   build,
   allAbilities,
-  onResetBuild,
+  pointBudget = 100,
+  remainingPoints,
 }) => {
   const hasClass = build.characterClass !== null;
   const hasPurchases = Object.keys(build.purchasedAbilities).length > 0;
+  const remaining = remainingPoints ?? (pointBudget - build.spentPoints);
+  const isOverBudget = remaining < 0;
+  const budgetPercentUsed = Math.min((build.spentPoints / pointBudget) * 100, 100);
 
   return (
     <section className="section-card build-summary">
@@ -60,6 +66,31 @@ export const BuildSummary: React.FC<BuildSummaryProps> = ({
           </div>
         )}
 
+        {/* Point Budget Progress */}
+        {hasClass && (
+          <div className="budget-progress">
+            <div className="budget-progress-header">
+              <span className="budget-progress-label">Point Budget</span>
+              <span className={`budget-progress-value ${isOverBudget ? 'over-budget' : ''}`}>
+                {build.spentPoints} / {pointBudget}
+              </span>
+            </div>
+            <div className="budget-progress-bar">
+              <div
+                className={`budget-progress-fill ${isOverBudget ? 'over-budget' : ''}`}
+                style={{ width: `${budgetPercentUsed}%` }}
+              />
+            </div>
+            <div className={`budget-remaining ${isOverBudget ? 'over-budget' : ''}`}>
+              {isOverBudget ? (
+                <>⚠️ {Math.abs(remaining)} points over budget</>
+              ) : (
+                <>{remaining} points remaining</>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="build-stats">
           <div className="build-stat">
@@ -86,14 +117,26 @@ export const BuildSummary: React.FC<BuildSummaryProps> = ({
                 const maxRank = ability?.ranks.length || rank;
                 const isMaxed = rank >= maxRank;
 
+                // Calculate total cost for this ability
+                let totalCost = 0;
+                if (ability) {
+                  for (let r = 1; r <= rank; r++) {
+                    const rankData = ability.ranks.find(rd => rd.rank === r);
+                    if (rankData) totalCost += rankData.cost;
+                  }
+                }
+
                 return (
                   <div key={abilityId} className="purchased-ability-item">
                     <span className="purchased-ability-name">
                       {abilityName}
                     </span>
-                    <span className={`purchased-ability-rank ${isMaxed ? 'maxed' : ''}`}>
-                      {isMaxed ? 'MAX' : `${rank}/${maxRank}`}
-                    </span>
+                    <div className="purchased-ability-meta">
+                      <span className="purchased-ability-cost">{totalCost} pts</span>
+                      <span className={`purchased-ability-rank ${isMaxed ? 'maxed' : ''}`}>
+                        {isMaxed ? 'MAX' : `${rank}/${maxRank}`}
+                      </span>
+                    </div>
                   </div>
                 );
               })}
@@ -106,17 +149,6 @@ export const BuildSummary: React.FC<BuildSummaryProps> = ({
             </div>
           )}
         </div>
-
-        {/* Reset Button */}
-        {hasPurchases && (
-          <button
-            className="btn-danger reset-build-btn"
-            onClick={onResetBuild}
-          >
-            <span>🔄</span>
-            Reset Build
-          </button>
-        )}
 
         {/* Tips */}
         {hasClass && !hasPurchases && (
