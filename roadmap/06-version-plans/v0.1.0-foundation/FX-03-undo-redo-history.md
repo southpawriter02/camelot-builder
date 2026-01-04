@@ -393,8 +393,8 @@ describe('history integration', () => {
 
 ### Testing
 - [x] Unit tests in `build.test.ts`
-- [ ] Additional edge case tests
-- [ ] Performance test with max history
+- [x] Additional edge case tests
+- [x] Performance test with max history
 
 ### Integration
 - [x] React state management in App.tsx
