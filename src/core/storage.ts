@@ -2,9 +2,16 @@ import type { IClass } from '../types';
 import { Build } from './build';
 import type { PurchasedAbilities } from './build';
 
-const STORAGE_KEY = 'camelot-builder-save';
+/** localStorage key for saved build data */
+export const STORAGE_KEY = 'camelot-builder-save';
 
-interface SavedBuild {
+/** Current schema version for saved builds */
+export const CURRENT_VERSION = 1;
+
+/**
+ * Structure of a saved build in localStorage
+ */
+export interface SavedBuild {
   version: number;
   className: string | null;
   realm: string | null;
@@ -18,7 +25,7 @@ interface SavedBuild {
  */
 export function saveBuild(build: Build): void {
   const savedBuild: SavedBuild = {
-    version: 1,
+    version: CURRENT_VERSION,
     className: build.characterClass?.name ?? null,
     realm: build.characterClass?.realm ?? null,
     purchasedAbilities: build.purchasedAbilities,
@@ -83,5 +90,10 @@ export function clearSavedBuild(): void {
  * Check if a saved build exists
  */
 export function hasSavedBuild(): boolean {
-  return localStorage.getItem(STORAGE_KEY) !== null;
+  try {
+    return localStorage.getItem(STORAGE_KEY) !== null;
+  } catch (error) {
+    console.error('Failed to check for saved build:', error);
+    return false;
+  }
 }

@@ -289,9 +289,9 @@ describe('persistence integration', () => {
 - [x] Integration with App.tsx
 
 ### Testing
-- [ ] Unit tests for all functions
-- [ ] Integration test for save/load cycle
-- [ ] Error scenario tests (corrupted data, missing class)
+- [x] Unit tests for all functions
+- [x] Integration test for save/load cycle
+- [x] Error scenario tests (corrupted data, missing class)
 
 ### Edge Cases Handled
 - [x] No saved build exists → Returns null
