@@ -378,9 +378,9 @@ describe('search integration', () => {
 - [x] Accessibility labels
 
 ### Testing
-- [ ] Unit tests for all behaviors
-- [ ] Integration test with filtering
-- [ ] Keyboard navigation test
+- [x] Unit tests for all behaviors
+- [x] Integration test with filtering
+- [x] Keyboard navigation test
 
 ### Integration
 - [x] Connected in App.tsx
