@@ -1,5 +1,33 @@
 export type RealmType = "Albion" | "Midgard" | "Hibernia";
 
+/**
+ * Stat types that abilities can modify
+ */
+export type StatType =
+  | 'strength'
+  | 'constitution'
+  | 'dexterity'
+  | 'quickness'
+  | 'intelligence'
+  | 'piety'
+  | 'charisma'
+  | 'empathy'
+  | 'hits'
+  | 'power';
+
+/**
+ * A stat bonus with type and value
+ */
+export interface IStatBonus {
+  type: StatType;
+  value: number;
+}
+
+/**
+ * Aggregated stats from all abilities
+ */
+export type AggregatedStats = Partial<Record<StatType, number>>;
+
 export interface IPrerequisite {
   type: "ability";
   ability: string; // The key/id of the required ability
@@ -10,6 +38,7 @@ export interface IAbilityRank {
   rank: number;
   cost: number;
   description: string;
+  stats?: IStatBonus[];
 }
 
 export interface IAbility {

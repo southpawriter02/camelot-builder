@@ -1,5 +1,7 @@
 import { Build } from '../core/build';
 import type { IAbility, RealmType } from '../types';
+import { aggregateStats } from '../core/stats';
+import { StatsDisplay } from './StatsDisplay';
 
 interface BuildSummaryProps {
   build: Build;
@@ -102,6 +104,16 @@ export const BuildSummary: React.FC<BuildSummaryProps> = ({
             <div className="build-stat-label">Abilities</div>
           </div>
         </div>
+
+        {/* Stat Bonuses */}
+        {hasPurchases && (
+          <div className="build-stats-bonuses">
+            <div className="build-stats-bonuses-header">
+              Stat Bonuses
+            </div>
+            <StatsDisplay stats={aggregateStats(build.purchasedAbilities, allAbilities)} />
+          </div>
+        )}
 
         {/* Purchased Abilities */}
         <div className="purchased-abilities">

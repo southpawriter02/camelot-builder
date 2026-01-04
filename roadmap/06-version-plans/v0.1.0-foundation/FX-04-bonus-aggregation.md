@@ -1,7 +1,7 @@
 # FX-04: Bonus Aggregation
 
 **Feature ID:** FX-04
-**Status:** Partial (~30%)
+**Status:** Complete
 **Priority:** High
 **Category:** Functional UX
 
@@ -741,35 +741,35 @@ describe('stats integration', () => {
 ## Deliverable Checklist
 
 ### Data Model
-- [ ] Define `StatType` type with all stat names
-- [ ] Define `IStatBonus` interface
-- [ ] Define `AggregatedStats` type
-- [ ] Add `stats` property to `IAbilityRank`
+- [x] Define `StatType` type with all stat names
+- [x] Define `IStatBonus` interface
+- [x] Define `AggregatedStats` type
+- [x] Add `stats` property to `IAbilityRank`
 
 ### Ability Data
-- [ ] Update all abilities in `abilities.json` with stat values
-- [ ] Verify stat values match game data
+- [x] Update all abilities in `abilities.json` with stat values
+- [x] Verify stat values match game data
 
 ### Core Logic
-- [ ] Create `src/core/stats.ts`
-- [ ] Implement `aggregateStats()` function
-- [ ] Implement `getStatLabel()` helper
-- [ ] Implement `getStatIcon()` helper
-- [ ] Implement `groupStatsByCategory()` helper
+- [x] Create `src/core/stats.ts`
+- [x] Implement `aggregateStats()` function
+- [x] Implement `getStatLabel()` helper
+- [x] Implement `getStatIcon()` helper (skipped - no emojis)
+- [x] Implement `groupStatsByCategory()` helper
 
 ### Components
-- [ ] Create `StatsDisplay.tsx` component
-- [ ] Integrate into `BuildSummary.tsx`
-- [ ] Add CSS styling for stats display
+- [x] Create `StatsDisplay.tsx` component
+- [x] Integrate into `BuildSummary.tsx`
+- [x] Add CSS styling for stats display
 
 ### Testing
-- [ ] Unit tests for `aggregateStats()`
-- [ ] Unit tests for helper functions
-- [ ] Integration tests for BuildSummary
+- [x] Unit tests for `aggregateStats()`
+- [x] Unit tests for helper functions
+- [x] Integration tests for BuildSummary
 
 ### Documentation
-- [ ] Update type documentation
-- [ ] Add JSDoc comments to new functions
+- [x] Update type documentation
+- [x] Add JSDoc comments to new functions
 
 ---
 

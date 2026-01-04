@@ -4,9 +4,9 @@
     "name": "Augment Dexterity",
     "tree": "enhancements",
     "ranks": [
-      { "rank": 1, "cost": 1, "description": "Increases Dexterity by 5." },
-      { "rank": 2, "cost": 2, "description": "Increases Dexterity by 10." },
-      { "rank": 3, "cost": 3, "description": "Increases Dexterity by 15." }
+      { "rank": 1, "cost": 1, "description": "Increases Dexterity by 5.", "stats": [{ "type": "dexterity", "value": 5 }] },
+      { "rank": 2, "cost": 2, "description": "Increases Dexterity by 10.", "stats": [{ "type": "dexterity", "value": 10 }] },
+      { "rank": 3, "cost": 3, "description": "Increases Dexterity by 15.", "stats": [{ "type": "dexterity", "value": 15 }] }
     ],
     "prerequisites": []
   },
@@ -15,7 +15,7 @@
     "name": "Serenity",
     "tree": "healing",
     "ranks": [
-      { "rank": 1, "cost": 3, "description": "Reduces spell interruption by a small amount." }
+      { "rank": 1, "cost": 3, "description": "Reduces spell interruption by a small amount.", "stats": [{ "type": "piety", "value": 3 }] }
     ],
     "prerequisites": [
       { "type": "ability", "ability": "augment_dexterity", "rank": 1 }
@@ -26,7 +26,7 @@
     "name": "Divine Intervention",
     "tree": "smiting",
     "ranks": [
-      { "rank": 1, "cost": 5, "description": "A powerful smite from the heavens." }
+      { "rank": 1, "cost": 5, "description": "A powerful smite from the heavens.", "stats": [{ "type": "piety", "value": 5 }, { "type": "power", "value": 10 }] }
     ],
     "prerequisites": []
   }

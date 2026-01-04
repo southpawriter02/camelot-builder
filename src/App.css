@@ -983,3 +983,111 @@
     display: none;
   }
 }
+
+/* ============================================
+   STATS DISPLAY (BONUS AGGREGATION)
+   ============================================ */
+
+/* Stats Bonuses Section in Build Summary */
+.build-stats-bonuses {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.build-stats-bonuses-header {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Stats Display Component */
+.stats-display {
+  margin-top: var(--spacing-sm);
+}
+
+.stats-display--empty {
+  text-align: center;
+  padding: var(--spacing-md);
+}
+
+.stats-display-empty-message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Compact mode (chips) */
+.stats-display--compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+}
+
+.stat-chip-label {
+  color: var(--color-text-secondary);
+}
+
+.stat-chip-value {
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+/* Full display (categorized) */
+.stats-category {
+  margin-bottom: var(--spacing-md);
+}
+
+.stats-category:last-child {
+  margin-bottom: 0;
+}
+
+.stats-category-title {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-xs) 0;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stats-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-sm);
+}
+
+.stat-item-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.stat-item-value {
+  font-weight: 600;
+  color: var(--color-success);
+  font-size: var(--font-size-sm);
+}
