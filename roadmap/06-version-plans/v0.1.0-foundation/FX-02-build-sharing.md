@@ -402,10 +402,10 @@ describe('sharing integration', () => {
 - [x] Integration with ActionBar share button
 
 ### Testing
-- [ ] Unit tests for encode/decode
-- [ ] Unit tests for URL functions
-- [ ] Integration test for full cycle
-- [ ] Edge case tests (invalid input)
+- [x] Unit tests for encode/decode
+- [x] Unit tests for URL functions
+- [x] Integration test for full cycle
+- [x] Edge case tests (invalid input)
 
 ### Edge Cases Handled
 - [x] No class selected → `c: null`
