@@ -485,9 +485,9 @@ describe('keyboard shortcuts integration', () => {
 - [x] `getShortcutHint` helper
 
 ### Testing
-- [ ] Unit tests for all shortcuts
-- [ ] Platform-specific tests
-- [ ] Integration tests
+- [x] Unit tests for all shortcuts
+- [x] Platform-specific tests
+- [x] Integration tests
 
 ### UI
 - [x] Shortcut hints in footer
