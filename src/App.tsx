@@ -5,12 +5,14 @@ import { BuildHistory } from './core/history';
 import { saveBuild, loadBuild } from './core/storage';
 import { getBuildShareUrl, getBuildFromUrl, decodeBuild, clearBuildFromUrl } from './core/sharing';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
+import { useModal } from './hooks/useModal';
 import { ClassSelector } from './components/ClassSelector';
 import { AbilityTree } from './components/AbilityTree';
 import { BuildSummary } from './components/BuildSummary';
 import { ActionBar } from './components/ActionBar';
 import { Toast, useToast } from './components/Toast';
 import { SearchFilter } from './components/SearchFilter';
+import { AbilityModal } from './components/AbilityModal';
 import type { SearchFilterRef } from './components/SearchFilter';
 import './App.css';
 
@@ -54,6 +56,9 @@ function App() {
 
   // Toast notifications
   const toast = useToast();
+
+  // Modal for ability details
+  const abilityModal = useModal<IAbility>();
 
   // Get current build from history
   const build = history.getCurrent();
@@ -249,6 +254,7 @@ function App() {
             build={build}
             onPurchaseAbility={handlePurchaseAbility}
             onRemoveAbility={handleRemoveAbility}
+            onAbilityClick={abilityModal.open}
           />
         </main>
 
@@ -274,6 +280,16 @@ function App() {
           <span><kbd>R</kbd> Reset</span>
         </div>
       </footer>
+
+      {/* Ability Detail Modal */}
+      {abilityModal.isOpen && abilityModal.data && (
+        <AbilityModal
+          ability={abilityModal.data}
+          currentRank={build.purchasedAbilities[abilityModal.data.id] || 0}
+          onClose={abilityModal.close}
+          allAbilities={allAbilities}
+        />
+      )}
     </div>
   );
 }

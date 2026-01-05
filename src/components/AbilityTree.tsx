@@ -7,6 +7,8 @@ interface AbilityTreeProps {
   build: Build;
   onPurchaseAbility: (ability: IAbility) => void;
   onRemoveAbility: (ability: IAbility) => void;
+  /** Callback when an ability card is clicked to view details */
+  onAbilityClick?: (ability: IAbility) => void;
 }
 
 // Tree icons for visual flair
@@ -30,6 +32,7 @@ export const AbilityTree: React.FC<AbilityTreeProps> = ({
   build,
   onPurchaseAbility,
   onRemoveAbility,
+  onAbilityClick,
 }) => {
   if (!build.characterClass) {
     return (
@@ -115,8 +118,10 @@ export const AbilityTree: React.FC<AbilityTreeProps> = ({
                 <div
                   key={ability.id}
                   className={`ability-card ${cardStateClass}`}
+                  onClick={() => onAbilityClick?.(ability)}
                   onContextMenu={(e) => handleContextMenu(e, ability)}
-                  title={hasRanks ? 'Right-click to remove a rank' : ''}
+                  title={hasRanks ? 'Right-click to remove a rank • Click for details' : 'Click for details'}
+                  style={{ cursor: 'pointer' }}
                 >
                   <div className="ability-header">
                     <div className="ability-info">

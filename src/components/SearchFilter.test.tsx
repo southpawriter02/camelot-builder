@@ -2,7 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
-import { SearchFilter, SearchFilterRef } from './SearchFilter';
+import { SearchFilter } from './SearchFilter';
+import type { SearchFilterRef } from './SearchFilter';
 
 describe('SearchFilter rendering', () => {
   it('renders with placeholder', () => {
