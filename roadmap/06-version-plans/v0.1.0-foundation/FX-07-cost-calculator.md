@@ -391,9 +391,9 @@ describe('cost calculator integration', () => {
 - [x] Warning styling for over-budget
 
 ### Testing
-- [ ] Unit tests for cost calculation
-- [ ] Unit tests for display logic
-- [ ] Integration tests
+- [x] Unit tests for cost calculation
+- [x] Unit tests for display logic
+- [x] Integration tests
 
 ### UI
 - [x] Progress bar with percentage fill
