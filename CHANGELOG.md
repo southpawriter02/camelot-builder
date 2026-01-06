@@ -28,6 +28,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `src/App.tsx` - Integrated modal state and rendering
   - Tests: 36 new tests (12 for useModal hook, 24 for AbilityModal component)
 
+- **SM-01: Loading States (Skeleton Components)** - Reusable skeleton loaders for loading states
+  - Base `Skeleton` component with configurable variants (text, circle, progress, button)
+  - Supports custom width, height, and count props
+  - Shimmer animation with left-to-right gradient effect
+  - `prefers-reduced-motion` support (disables animation, shows static skeleton)
+  - Accessible with `aria-hidden="true"` on all skeleton elements
+  - Preset components matching app layout patterns:
+    - `SkeletonCard` - Generic card with header and content lines
+    - `SkeletonAbilityCard` - Matches ability-card layout (icon, text, progress, button)
+    - `SkeletonClassCard` - Matches class-card layout (icon, name, realm)
+    - `SkeletonAbilityTree` - Full tree section with configurable groups and cards
+    - `SkeletonClassSelector` - Class grid section with configurable card count
+    - `SkeletonBuildSummary` - Sidebar skeleton with header, budget, stats, abilities
+  - New files:
+    - `src/components/Skeleton.tsx` - All skeleton components
+    - `src/components/Skeleton.css` - Skeleton styling and animations
+  - Modified files:
+    - `src/index.css` - Added skeleton CSS variables (`--skeleton-base`, `--skeleton-highlight`)
+  - Tests: 53 new tests for all skeleton components
+
 #### v0.5.0 "Style" Planning Documentation
 
 - Created comprehensive planning documentation for visual polish release:
@@ -202,7 +222,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | ID | Feature | Status |
 |----|---------|--------|
 | IH-01 | Ability Detail Modal | **Complete** |
-| SM-01 | Loading States | Planned |
+| SM-01 | Loading States | **Complete** |
 | SM-02 | Toast Notifications Enhancement | Planned |
 | SM-03 | Confirmation Dialogs | Planned |
 
@@ -239,8 +259,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 |----------|-------|
 | Core (build, history, sharing, storage, stats) | 132 |
 | Hooks (useKeyboardShortcuts, useModal) | 53 |
-| Components (BuildSummary, SearchFilter, AbilityModal) | 66 |
-| **Total** | **251** |
+| Components (BuildSummary, SearchFilter, AbilityModal, Skeleton) | 119 |
+| **Total** | **304** |
 
 ---
 

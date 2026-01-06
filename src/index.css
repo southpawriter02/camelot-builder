@@ -76,6 +76,10 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
 
+  /* Skeleton Loading */
+  --skeleton-base: #2a2a3e;
+  --skeleton-highlight: #3a3a4e;
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;

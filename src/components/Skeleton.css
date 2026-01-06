@@ -1,0 +1,228 @@
+/* ============================================
+   SKELETON LOADING COMPONENTS
+   Shimmer animation styles for loading states
+   ============================================ */
+
+/* Shimmer Animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Base Skeleton Element */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base) 25%,
+    var(--skeleton-highlight) 50%,
+    var(--skeleton-base) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: var(--skeleton-base);
+    opacity: 0.7;
+  }
+}
+
+/* ===================
+   SKELETON VARIANTS
+   =================== */
+
+/* Text Skeleton */
+.skeleton-text {
+  height: 16px;
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.skeleton-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Circle Skeleton */
+.skeleton-circle {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Progress Bar Skeleton */
+.skeleton-progress {
+  height: 8px;
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+}
+
+/* Button Skeleton */
+.skeleton-button {
+  height: 36px;
+  border-radius: var(--border-radius-md);
+  min-width: 80px;
+}
+
+/* ===================
+   PRESET COMPONENTS
+   =================== */
+
+/* Generic Card Skeleton Container */
+.skeleton-card-container {
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+}
+
+/* Ability Card Skeleton - matches .ability-card layout */
+.skeleton-ability-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.skeleton-ability-card:last-child {
+  margin-bottom: 0;
+}
+
+.skeleton-ability-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.skeleton-ability-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Class Card Skeleton - matches .class-card layout */
+.skeleton-class-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  min-height: 100px;
+}
+
+/* Tree Group Skeleton - matches .tree-group layout */
+.skeleton-tree-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.skeleton-tree-group:last-child {
+  margin-bottom: 0;
+}
+
+.skeleton-tree-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Build Summary Skeleton - matches .build-summary layout */
+.skeleton-build-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.skeleton-summary-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.skeleton-summary-header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.skeleton-summary-section {
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.skeleton-summary-section-title {
+  margin-bottom: var(--spacing-sm);
+}
+
+.skeleton-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.skeleton-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Section Card Skeleton - matches .section-card layout */
+.skeleton-section-card {
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-card) 0%,
+    var(--color-bg-secondary) 100%
+  );
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.skeleton-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-card) 100%
+  );
+}
+
+.skeleton-section-body {
+  padding: var(--spacing-lg);
+}
+
+/* Class Selector Grid Skeleton */
+.skeleton-class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
